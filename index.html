@@ -1,0 +1,168 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>Food Deserts Miami, FL</title>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="shortcut icon" type="image/x-icon" href="marker-icon.png" />
+
+    <link rel="stylesheet" href="leaflet.css"></script>
+    <link rel="stylesheet" href="Control.OSMGeocoder.css"></script>
+    <script src="leaflet.js"></script>
+    <script src="Control.OSMGeocoder.js"></script>
+
+	
+</head>
+<body>
+<div class="center">UWF - Special Topics in GIS - Module 4<br> Miami, Florida Food Deserts</div>
+
+<div id="mapid" style="width: 600px; height: 400px;"></div>
+<script>
+
+	var mymap = L.map('mapid').setView([25.761, -80.255], 10);
+
+	L.tileLayer('https://api.mapbox.com/styles/v1/kcofino1/cjpeyczew0r902so7vvwjui4o/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2NvZmlubzEiLCJhIjoiY2pwM2NheGViMGdnYTN3bG5xYTFleWUzZSJ9.1OkTvFhjHUAHFMmWyeytjg', {
+		maxZoom: 18,
+		opacity: 1,
+		attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+			'<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+			'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+		id: 'mapbox.streets'
+		
+	}).addTo(mymap);
+var osmGeocoder = new L.Control.OSMGeocoder({
+	collapsed: true,
+	position: 'bottomleft',
+	text: 'Find!'
+	});
+
+mymap.addControl(osmGeocoder);
+
+	L.marker([25.769, -80.202]).addTo(mymap)
+		.bindPopup("<b>Welcome to Miami!</b><br />We have beaches.").openPopup();
+
+	L.circle([25.778, -80.269], 900, {
+		color: 'red',
+		fillColor: '#f03',
+		fillOpacity: 0.5
+	}).addTo(mymap).bindPopup("I am a circle.");
+
+	L.polygon([
+		[25.823, -80.26],
+		[25.807, -80.259],
+		[25.822, -80.279]
+	]).addTo(mymap).bindPopup("I am a polygon.");
+
+
+	var popup = L.popup();
+
+	function onMapClick(e) {
+		popup
+			.setLatLng(e.latlng)
+			.setContent("You clicked the map at " + e.latlng.toString())
+			.openOn(mymap);
+	}
+
+	mymap.on('click', onMapClick);
+
+</script>
+
+<div class='legend'>
+<div class='legend-title'>Features</div>
+ <ul class='legend-point'>
+ <li><span style='background:#000000;'></span>Grocery Stores</li>
+ </ul>
+<div class='legend-subtitle'>Population Ranges</div>
+<div class='legend-scale'>
+ <ul class='legend-labels'>
+ <li><span style='background:#feefd7;'></span>0-2749</li>
+ <li><span style='background:#fdcc8b;'></span>2750-4613</li>
+ <li><span style='background:#fc8d5a;'></span>4614-5412</li>
+ <li><span style='background:#e34c35;'></span>5413-6711</li>
+ <li><span style='background:#b30000;'></span>6712-8862</li>
+ 
+ </ul>
+</div>
+</div>
+<style type='text/css'>
+.legend {
+ font-family: "Calibri";
+}
+.legend .legend-title {
+ text-align: left;
+ margin-bottom: 3px;
+ font-weight: bold;
+ font-size: 90%;
+ }
+ .legend .legend-subtitle {
+ text-align: left;
+ margin-bottom: 5px;
+UWF Online GIS GIS 4930: Special Topics in GIS
+Copyright, 2018 Page 19 Project 4: Analyze Week 1
+ font-weight: bold;
+ font-size: 70%;
+ }
+ .legend .legend-scale ul {
+ margin: 0;
+ margin-bottom: 5px;
+ padding: 0;
+ float: left;
+ list-style: none;
+ }
+ .legend .legend-scale ul li {
+ font-size: 80%;
+ list-style: none;
+ margin-left: 0;
+ line-height: 18px;
+ margin-bottom: 2px;
+ }
+ .legend ul.legend-labels li span {
+ display: block;
+ float: left;
+ height: 16px;
+ width: 30px;
+ margin-right: 5px;
+ margin-left: 0;
+ border: 1px solid #999;
+ }
+ .legend .legend-point ul {
+ margin: 0;
+ margin-bottom: 5px;
+ padding: 0;
+ float: left;
+ list-style: none;
+ }
+ .legend .legend-point ul li {
+ font-size: 80%;
+ list-style: none;
+ margin-left: 0;
+ line-height: 18px;
+ margin-bottom: 2px;
+ }
+UWF Online GIS GIS 4930: Special Topics in GIS
+Copyright, 2018 Page 20 Project 4: Analyze Week 1
+ .legend ul.legend-labels li span {
+ display: circle;
+ float: left;
+ height: 16px;
+ width: 30px;
+ margin-right: 5px;
+ margin-left: 0;
+ border: 1px solid #999;
+ }
+ .legend .legend-source {
+ font-size: 70%;
+ color: #999;
+ clear: both;
+ }
+ .legend a {
+ color: #777;
+ }
+</style>
+
+</body>
+</html>
