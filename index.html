@@ -49,13 +49,13 @@ mymap.addControl(osmGeocoder);
 		color: 'red',
 		fillColor: '#f03',
 		fillOpacity: 0.5
-	}).addTo(mymap).bindPopup("I am a circle.");
+	}).addTo(mymap).bindPopup("This area is in a food oasis.");
 
 	L.polygon([
 		[25.823, -80.26],
 		[25.807, -80.259],
 		[25.822, -80.279]
-	]).addTo(mymap).bindPopup("I am a polygon.");
+	]).addTo(mymap).bindPopup("This area is in a food desert.");
 
 
 	var popup = L.popup();
